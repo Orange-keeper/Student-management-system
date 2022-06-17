@@ -210,35 +210,42 @@ public:
 	}
 };
 
-//class GM_info
-//{
-//private:
-//	wchar_t user[9];
-//	wchar_t pwd[9];
-//public:
-//	GM_info(const wchar_t user[9], wchar_t pwd[9])
-//	{
-//		for (int i = 0; i < 9; i++) {
-//			this->user[i] = user[i];
-//			this->pwd[i] = pwd[i];
-//		}
-//		MessageBox
-//	}
-//	wchar_t *getpwd() { return pwd; }
-//	void resetpwd(wchar_t pwd[9])
-//	{
-//		for (int i = 0; i < 9; i++) {
-//			this->pwd[i] = pwd[i];
-//		}
-//	}
-//	
-//};
+class GM
+{
+private:
+	wchar_t user[9];
+	wchar_t pwd[9];
+public:
+	GM(const wchar_t user[9], wchar_t pwd[9])
+	{
+		for (int i = 0; i < 9; i++) {
+			this->user[i] = user[i];
+			this->pwd[i] = pwd[i];
+		}
+		MessageBox(0,TEXT("创建新管理员成功！"),TEXT(""),MB_OK);
+	}
+	wchar_t *getpwd() { return pwd; }
+	void resetpwd(wchar_t pwd[9])
+	{
+		for (int i = 0; i < 9; i++) {
+			this->pwd[i] = pwd[i];
+		}
+	}
+	
+};
 
 // 定义控件
 EasyTextBox txtName;
 EasyTextBox txtPwd;
 EasyButton btnOK;
+EasyButton btnCreate;
+EasyButton btnback;
 
+void On_btnCreate_Click()
+{
+	MessageBox(0, L"createbox", L"", MB_OK);
+
+}
 
 
 // 按钮 btnOK 的点击事件
@@ -270,7 +277,8 @@ int main()
 	txtName.Create(120, 50, 400, 75, 10);						// 创建用户名文本框控件
 	outtextxy(50, 105, L"密　码：");
 	txtPwd.Create(120, 100, 400, 125, 10);						// 创建密码文本框控件
-	btnOK.Create(320, 150, 400, 175, L"OK", On_btnOk_Click);	// 创建按钮控件
+	btnOK.Create(130, 150, 210, 175, L"OK", On_btnOk_Click);	// 创建按钮控件
+	btnCreate.Create(300, 150, 380, 175, L"Create", On_btnCreate_Click);
 
 	ExMessage msg;
 	while (true)
